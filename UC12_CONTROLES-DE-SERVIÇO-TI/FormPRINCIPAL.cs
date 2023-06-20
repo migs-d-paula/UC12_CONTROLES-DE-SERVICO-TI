@@ -19,10 +19,26 @@ namespace UC12_CONTROLES_DE_SERVIÇO_TI
 
         private void orçamentoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Form telaPRINCIPAL = new FormPRINCIPAL();
-            telaPRINCIPAL.MdiParent = this;
-            telaPRINCIPAL.WindowState = FormWindowState.Maximized;
-            telaPRINCIPAL.Show();
+            Form telaORCAMENTO = new FormORCAMENTO();
+            telaORCAMENTO.MdiParent = this;
+            telaORCAMENTO.WindowState = FormWindowState.Maximized;
+            telaORCAMENTO.Show();
+        }
+
+        private void históricoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form telaHISTORICO = new FormHISTORICO();
+            telaHISTORICO.MdiParent = this;
+            telaHISTORICO.WindowState = FormWindowState.Maximized;
+            telaHISTORICO.Show();
+        }
+
+        private void cadastroToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form telaCADASTRO = new FormCADASTRO();
+            telaCADASTRO.MdiParent = this;
+            telaCADASTRO.WindowState = FormWindowState.Maximized;
+            telaCADASTRO.Show();
         }
     }
 }
