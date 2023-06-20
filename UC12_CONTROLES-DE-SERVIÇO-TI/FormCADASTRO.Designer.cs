@@ -108,6 +108,7 @@
             this.buttonCONCLUIDO.TabIndex = 12;
             this.buttonCONCLUIDO.Text = "Concluido";
             this.buttonCONCLUIDO.UseVisualStyleBackColor = false;
+            this.buttonCONCLUIDO.Click += new System.EventHandler(this.buttonCONCLUIDO_Click);
             // 
             // label4
             // 
