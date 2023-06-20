@@ -169,5 +169,11 @@
   <ItemGroup>
     <None Include="Resources\vecteezy_abstract-retro-sci-fi-neon-bright-lens-flare-colored-on_6241095_847.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pxfuel.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\vecteezy_blue-space-with-stars-with-neon-border-background__27.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

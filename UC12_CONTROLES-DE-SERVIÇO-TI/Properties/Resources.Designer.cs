@@ -73,9 +73,29 @@ namespace UC12_CONTROLES_DE_SERVIÇO_TI.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap pxfuel {
+            get {
+                object obj = ResourceManager.GetObject("pxfuel", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap vecteezy_abstract_retro_sci_fi_neon_bright_lens_flare_colored_on_6241095_847 {
             get {
                 object obj = ResourceManager.GetObject("vecteezy_abstract-retro-sci-fi-neon-bright-lens-flare-colored-on_6241095_847", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap vecteezy_blue_space_with_stars_with_neon_border_background__27 {
+            get {
+                object obj = ResourceManager.GetObject("vecteezy_blue-space-with-stars-with-neon-border-background__27", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
