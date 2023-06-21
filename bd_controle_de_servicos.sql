@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 20/06/2023 às 02:26
+-- Tempo de geração: 21/06/2023 às 03:10
 -- Versão do servidor: 10.4.22-MariaDB
 -- Versão do PHP: 8.0.13
 
@@ -35,6 +35,13 @@ CREATE TABLE `tbl_cliente` (
   `fk_endereco` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Despejando dados para a tabela `tbl_cliente`
+--
+
+INSERT INTO `tbl_cliente` (`id`, `nome`, `cpf`, `celular`, `fk_endereco`) VALUES
+(1, 'Miguel', 2147483647, 2147483647, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -50,6 +57,13 @@ CREATE TABLE `tbl_endereco` (
   `numero` int(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Despejando dados para a tabela `tbl_endereco`
+--
+
+INSERT INTO `tbl_endereco` (`id`, `estado`, `cidade`, `bairro`, `rua`, `numero`) VALUES
+(1, 'São Paulo', 'Guaratinguetá', 'Santa Rita', 'Adriano mendonça', 173);
+
 -- --------------------------------------------------------
 
 --
@@ -58,13 +72,22 @@ CREATE TABLE `tbl_endereco` (
 
 CREATE TABLE `tbl_ordem_de_servico` (
   `id` int(11) NOT NULL,
-  `fk_cliente` int(11) NOT NULL,
+  `cliente` int(11) NOT NULL,
   `produto` varchar(100) NOT NULL,
   `problema` varchar(50) NOT NULL,
   `data_de_chegada` datetime NOT NULL,
   `solucoes` varchar(100) NOT NULL,
-  `status` varchar(100) NOT NULL
+  `valor` double NOT NULL,
+  `status` varchar(100) NOT NULL,
+  `fk_cliente` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Despejando dados para a tabela `tbl_ordem_de_servico`
+--
+
+INSERT INTO `tbl_ordem_de_servico` (`id`, `cliente`, `produto`, `problema`, `data_de_chegada`, `solucoes`, `valor`, `status`, `fk_cliente`) VALUES
+(1, 0, 'notebook', 'nao liga', '2023-06-20 21:15:26', 'comprar e instalar novo hdd', 250, ' Em Andamento', NULL);
 
 --
 -- Índices para tabelas despejadas
@@ -87,7 +110,9 @@ ALTER TABLE `tbl_endereco`
 -- Índices de tabela `tbl_ordem_de_servico`
 --
 ALTER TABLE `tbl_ordem_de_servico`
-  ADD KEY `ordem_cliente` (`fk_cliente`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `ordem_cliente` (`cliente`),
+  ADD KEY `cliente` (`fk_cliente`);
 
 --
 -- AUTO_INCREMENT para tabelas despejadas
@@ -97,13 +122,19 @@ ALTER TABLE `tbl_ordem_de_servico`
 -- AUTO_INCREMENT de tabela `tbl_cliente`
 --
 ALTER TABLE `tbl_cliente`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de tabela `tbl_endereco`
 --
 ALTER TABLE `tbl_endereco`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT de tabela `tbl_ordem_de_servico`
+--
+ALTER TABLE `tbl_ordem_de_servico`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Restrições para tabelas despejadas
@@ -119,7 +150,7 @@ ALTER TABLE `tbl_cliente`
 -- Restrições para tabelas `tbl_ordem_de_servico`
 --
 ALTER TABLE `tbl_ordem_de_servico`
-  ADD CONSTRAINT `ordem_cliente` FOREIGN KEY (`fk_cliente`) REFERENCES `tbl_cliente` (`id`);
+  ADD CONSTRAINT `cliente` FOREIGN KEY (`fk_cliente`) REFERENCES `tbl_cliente` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
