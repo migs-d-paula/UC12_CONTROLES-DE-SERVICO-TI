@@ -22,7 +22,7 @@ namespace UC12_CONTROLES_DE_SERVIÇO_TI
         public FormHISTORICO()
         {
             InitializeComponent();
-            servidor = "Server=localhost;Database=db_controle_de_servicos;Uid=root;Pwd=";
+            servidor = "Server=localhost;Database=bd_controle_de_servicos;Uid=root;Pwd=";
             conexao = new MySqlConnection(servidor);
             comando = conexao.CreateCommand();
 
@@ -33,7 +33,8 @@ namespace UC12_CONTROLES_DE_SERVIÇO_TI
             try
             {
                 conexao.Open();
-                comando.CommandText = "SELECT * FROM tbl_ordem_de_servico INNER JOIN tbl_cliente ON (tbl_ordem_de_servico.fk_clente = tbl_cliente.id) ORDER BY data_chegada DESC;";
+                comando.CommandText = "SELECT nome, produto, solucoes, valor, data_de_chegada, status FROM tbl_ordem_de_servico INNER JOIN tbl_cliente ON (tbl_ordem_de_servico.fk_cliente = tbl_cliente.id) ORDER BY data_de_chegada DESC;";
+                comando.ExecuteNonQuery();
 
                 MySqlDataAdapter adaptadorHISTORICO = new MySqlDataAdapter(comando);
 
@@ -44,13 +45,14 @@ namespace UC12_CONTROLES_DE_SERVIÇO_TI
                 dataGridViewHISTORICO.Columns["nome"].HeaderText = "NOME";
                 dataGridViewHISTORICO.Columns["produto"].HeaderText = "PRODUTO";
                 dataGridViewHISTORICO.Columns["solucoes"].HeaderText = "SOLUÇÃO";
-                dataGridViewHISTORICO.Columns["data_chegada"].HeaderText = "DATA";
+                dataGridViewHISTORICO.Columns["valor"].HeaderText = "VALOR";
+                dataGridViewHISTORICO.Columns["data_de_chegada"].HeaderText = "DATA";
                 dataGridViewHISTORICO.Columns["status"].HeaderText = "STATUS";
                 
             }
             catch (Exception erro)
             {
-                //MessageBox.Show(erro.Message);
+                MessageBox.Show(erro.Message);
                 MessageBox.Show("Erro ao abrir a lista, Fale com o Adiministrador do sistema");
             }
             finally
@@ -64,7 +66,8 @@ namespace UC12_CONTROLES_DE_SERVIÇO_TI
             try
             {
                 conexao.Open();
-                comando.CommandText = "SELECT * FROM tbl_ordem_de_servico INNER JOIN tbl_cliente ON (tbl_ordem_de_servico.fk_clente = tbl_cliente.id) ORDER BY data_chegada DESC;";
+                comando.CommandText = "SELECT nome, produto, solucoes, valor, data_de_chegada, status FROM tbl_ordem_de_servico INNER JOIN tbl_cliente ON (tbl_ordem_de_servico.fk_cliente = tbl_cliente.id) ORDER BY data_de_chegada DESC;";
+                comando.ExecuteNonQuery();
 
                 MySqlDataAdapter adaptadorHISTORICO = new MySqlDataAdapter(comando);
 
@@ -75,10 +78,45 @@ namespace UC12_CONTROLES_DE_SERVIÇO_TI
                 dataGridViewHISTORICO.Columns["nome"].HeaderText = "NOME";
                 dataGridViewHISTORICO.Columns["produto"].HeaderText = "PRODUTO";
                 dataGridViewHISTORICO.Columns["solucoes"].HeaderText = "SOLUÇÃO";
-                dataGridViewHISTORICO.Columns["data_chegada"].HeaderText = "DATA";
+                dataGridViewHISTORICO.Columns["valor"].HeaderText = "VALOR";
+                dataGridViewHISTORICO.Columns["data_de_chegada"].HeaderText = "DATA";
                 dataGridViewHISTORICO.Columns["status"].HeaderText = "STATUS";
 
             }
+            catch (Exception erro)
+            {
+                //MessageBox.Show(erro.Message);
+                MessageBox.Show("Erro ao abrir a lista, Fale com o Adiministrador do sistema");
+            }
+            finally
+            {
+                conexao.Close();
+            }
+        }
+
+        private void buttonPESQUISAR_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                conexao.Open();
+                comando.CommandText = "SELECT nome, produto, solucoes, valor, data_de_chegada, status FROM tbl_ordem_de_servico INNER JOIN tbl_cliente ON (tbl_ordem_de_servico.fk_cliente = tbl_cliente.id) WHERE nome LIKE '" + textBoxPESQUISA.Text + "'% OR produto LIKE '" + textBoxPESQUISA.Text + "'% OR status LIKE '" + textBoxPESQUISA.Text + "'% OR data_de_chegada BETWEEN '" + dateTimePicker1 + "' AND '" + dateTimePicker2 + "' '" + "'% ORDER data_de_chegada;";
+                comando.ExecuteNonQuery();
+
+                MySqlDataAdapter adaptadorHISTORICO = new MySqlDataAdapter(comando);
+
+                DataTable tabelaHISTORICO = new DataTable();
+                adaptadorHISTORICO.Fill(tabelaHISTORICO);
+
+                dataGridViewHISTORICO.DataSource = tabelaHISTORICO;
+                dataGridViewHISTORICO.Columns["nome"].HeaderText = "NOME";
+                dataGridViewHISTORICO.Columns["produto"].HeaderText = "PRODUTO";
+                dataGridViewHISTORICO.Columns["solucoes"].HeaderText = "SOLUÇÃO";
+                dataGridViewHISTORICO.Columns["valor"].HeaderText = "VALOR";
+                dataGridViewHISTORICO.Columns["data_de_chegada"].HeaderText = "DATA";
+                dataGridViewHISTORICO.Columns["status"].HeaderText = "STATUS";
+            }
+
+
             catch (Exception erro)
             {
                 //MessageBox.Show(erro.Message);

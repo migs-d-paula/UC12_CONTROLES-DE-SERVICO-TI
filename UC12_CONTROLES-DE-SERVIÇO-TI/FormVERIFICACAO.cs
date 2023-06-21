@@ -9,15 +9,16 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 
+
 namespace UC12_CONTROLES_DE_SERVIÇO_TI
 {
-    public partial class FormENDERECO : Form
+    public partial class FormVERIFICACAO : Form
     {
         string servidor;
         MySqlConnection conexao;
         MySqlCommand comando;
 
-        public FormENDERECO()
+        public FormVERIFICACAO()
         {
             InitializeComponent();
             servidor = "Server=localhost;Database=bd_controle_de_servicos;Uid=root;Pwd=";
@@ -25,12 +26,13 @@ namespace UC12_CONTROLES_DE_SERVIÇO_TI
             comando = conexao.CreateCommand();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void button2_Click(object sender, EventArgs e)
         {
             try
             {
                 conexao.Open();
-                comando.CommandText = "INSERT INTO tbl_endereco(estado, cidade, bairro, rua, numero) VALUES ('" + comboBoxESTADO.Text + "', '" + textBoxCIDADE.Text + "', '" + textBoxBAIRRO.Text + "','" + textBoxRUA.Text + "', '" + textBoxNUMERO.Text + "'); ";
+
+                comando.CommandText = "UPDATE tbl_ordem_de_servico SET status = 'Aprovado';";
                 comando.ExecuteNonQuery();
 
                 this.Close();
@@ -38,7 +40,29 @@ namespace UC12_CONTROLES_DE_SERVIÇO_TI
             catch (Exception erro)
             {
                 MessageBox.Show(erro.Message);
-                MessageBox.Show("Erro ao adicionar endereço, Fale com o Adiministrador do sistema");
+                MessageBox.Show("Erro ao cadastrar, Fale com o Adiministrador do sistema");
+            }
+            finally
+            {
+                conexao.Close();
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                conexao.Open();
+
+                comando.CommandText = "UPDATE tbl_ordem_de_servico SET status = 'Cancelado';";
+                comando.ExecuteNonQuery();
+
+                this.Close();
+            }
+            catch (Exception erro)
+            {
+                MessageBox.Show(erro.Message);
+                MessageBox.Show("Erro ao cadastrar, Fale com o Adiministrador do sistema");
             }
             finally
             {

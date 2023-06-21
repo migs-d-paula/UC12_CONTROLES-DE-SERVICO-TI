@@ -116,6 +116,12 @@
     <Compile Include="FormPRINCIPAL.Designer.cs">
       <DependentUpon>FormPRINCIPAL.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormVERIFICACAO.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormVERIFICACAO.Designer.cs">
+      <DependentUpon>FormVERIFICACAO.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FormCADASTRO.resx">
@@ -132,6 +138,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormPRINCIPAL.resx">
       <DependentUpon>FormPRINCIPAL.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormVERIFICACAO.resx">
+      <DependentUpon>FormVERIFICACAO.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
